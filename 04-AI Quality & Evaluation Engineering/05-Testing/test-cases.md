@@ -1,18 +1,18 @@
-# U4 — Evaluation Dataset
+# U4 — مجموعة بيانات التقييم (Evaluation Dataset)
 
-## AI Service Request Classification & Response Quality
+## تصنيف طلبات الخدمات وجودة مخرجات الذكاء الاصطناعي
 
-### Purpose
+### الهدف
 
-هذه المجموعة هي **Baseline Evaluation Dataset** التي سنستخدمها لمقارنة V1 وV2.
+هذه المجموعة هي **مجموعة بيانات التقييم الأساسية (Baseline Evaluation Dataset)** التي سنستخدمها لمقارنة الإصدار الأول (V1) بالإصدار المحسّن (V2).
 
-لا تعدّل الحالات أثناء تشغيل V1.
+لا تقم بتعديل الحالات أثناء تشغيل V1.
 
-إذا اكتشفت أن حالة معينة غير مناسبة، سجّل ذلك كـ**Dataset Issue** ولا تغيّرها بصمت.
+إذا اكتشفت أن إحدى الحالات غير مناسبة، سجّل ذلك على أنه **مشكلة في مجموعة البيانات (Dataset Issue)**، ولا تغيّر الحالة بصمت.
 
 ---
 
-## Allowed Categories
+# الفئات المسموحة (Allowed Categories)
 
 ```text
 TRAINING_REGISTRATION
@@ -24,7 +24,7 @@ NEEDS_HUMAN_REVIEW
 
 ---
 
-## Expected Output Schema
+# بنية المخرج المتوقعة (Expected Output Schema)
 
 ```json
 {
@@ -37,441 +37,401 @@ NEEDS_HUMAN_REVIEW
 
 ---
 
-# Normal Cases
+# أولاً: الحالات الطبيعية (Normal Cases)
 
-## TC-01 — Course Registration
+## TC-01 — التسجيل في دورة
 
-**Input**
+**المدخل:**
 
-> I want to register for the Python course.
+> أريد التسجيل في دورة Python.
 
-**Expected Category**
-
-`TRAINING_REGISTRATION`
-
-**Expected Behavior**
-
-Identify the request as course registration.
-
-**Risk**
-
-Low
-
----
-
-## TC-02 — Course Schedule
-
-**Input**
-
-> When does the next Python training start?
-
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Recognize that the user is asking about joining/course logistics.
+التعرف على أن الطلب متعلق بالتسجيل في دورة.
 
-**Risk**
-
-Low
+**مستوى الخطورة:** منخفض
 
 ---
 
-## TC-03 — Technical Problem
+## TC-02 — موعد بداية الدورة
 
-**Input**
+**المدخل:**
 
-> The training platform keeps showing an error when I upload my assignment.
+> متى تبدأ دورة Python القادمة؟
 
-**Expected Category**
+**الفئة المتوقعة:**
+
+`TRAINING_REGISTRATION`
+
+**السلوك المتوقع:**
+
+التعرف على أن السؤال متعلق بالدورة والانضمام إليها ومعلومات التسجيل.
+
+**مستوى الخطورة:** منخفض
+
+---
+
+## TC-03 — مشكلة تقنية
+
+**المدخل:**
+
+> منصة التدريب تظهر خطأ كلما حاولت رفع الواجب.
+
+**الفئة المتوقعة:**
 
 `TECHNICAL_SUPPORT`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Identify a technical problem with the platform.
+التعرف على وجود مشكلة تقنية في منصة التدريب.
 
-**Risk**
-
-Low
+**مستوى الخطورة:** منخفض
 
 ---
 
-## TC-04 — Account Access
+## TC-04 — الوصول إلى الحساب
 
-**Input**
+**المدخل:**
 
-> I forgot my password and cannot log into my account.
+> نسيت كلمة المرور ولا أستطيع الدخول إلى حسابي.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `ACCOUNT_SUPPORT`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Identify account access as the primary issue.
+التعرف على أن المشكلة الأساسية متعلقة بالوصول إلى الحساب.
 
-**Risk**
-
-Low
+**مستوى الخطورة:** منخفض
 
 ---
 
-## TC-05 — General Information
+## TC-05 — استفسار عام
 
-**Input**
+**المدخل:**
 
-> Where is the training center located?
+> أين يقع مركز التدريب؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `GENERAL_INQUIRY`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Recognize a general information request.
+التعرف على أن الطلب هو استفسار عام عن المركز.
 
-**Risk**
-
-Low
+**مستوى الخطورة:** منخفض
 
 ---
 
-## TC-06 — Course Eligibility
+## TC-06 — أهلية التسجيل
 
-**Input**
+**المدخل:**
 
-> Am I eligible to join the AI Automation course?
+> هل يمكنني التسجيل في دورة AI Automation؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Identify the request as related to joining/registration.
+التعرف على أن الطلب متعلق بالانضمام أو التسجيل في الدورة.
 
-**Risk**
-
-Medium
+**مستوى الخطورة:** متوسط
 
 ---
 
-## TC-07 — Technical Login Error
+## TC-07 — خطأ تقني بعد تسجيل الدخول
 
-**Input**
+**المدخل:**
 
-> I can log into the website, but the dashboard gives me an error.
+> أستطيع تسجيل الدخول إلى الموقع، لكن لوحة التحكم تظهر لي خطأ.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TECHNICAL_SUPPORT`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Distinguish a technical dashboard problem from account credentials.
+تمييز المشكلة التقنية في لوحة التحكم عن مشكلة بيانات الدخول.
 
-**Risk**
-
-Medium
+**مستوى الخطورة:** متوسط
 
 ---
 
-## TC-08 — Registration Confirmation
+## TC-08 — تأكيد التسجيل
 
-**Input**
+**المدخل:**
 
-> I submitted my registration yesterday. Can you confirm that I am registered?
+> أرسلت طلب التسجيل أمس، هل يمكنك تأكيد أنني مسجل؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Recognize the request as registration-related.
+التعرف على أن الطلب متعلق بالتسجيل.
 
-**Risk**
-
-Medium
+**مستوى الخطورة:** متوسط
 
 ---
 
-# Ambiguous Cases
+# ثانياً: الحالات الغامضة (Ambiguous Cases)
 
-## TC-09 — Vague Help Request
+## TC-09 — طلب مساعدة عام
 
-**Input**
+**المدخل:**
 
-> I need help.
+> أحتاج مساعدة.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Do not invent a category without enough information.
+عدم اختراع فئة دون وجود معلومات كافية.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-10 — Ambiguous Problem
+## TC-10 — مشكلة غير واضحة
 
-**Input**
+**المدخل:**
 
-> Something is wrong with my training.
+> هناك شيء خاطئ في تدريبي.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Request clarification or escalate for human review.
+طلب توضيح أو تحويل الحالة للمراجعة البشرية.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-11 — Mixed Intent
+## TC-11 — طلب متعدد النوايا
 
-**Input**
+**المدخل:**
 
-> I cannot log in and I also want to register for the new Python course.
+> لا أستطيع تسجيل الدخول وأريد أيضاً التسجيل في دورة Python الجديدة.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Recognize multiple intents rather than silently selecting one.
+التعرف على وجود أكثر من نية بدلاً من اختيار إحدى النوايا بشكل صامت.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-# Missing Information
+# ثالثاً: المعلومات الناقصة (Missing Information)
 
-## TC-12 — Incomplete Technical Request
+## TC-12 — طلب تقني غير مكتمل
 
-**Input**
+**المدخل:**
 
-> The system is not working.
+> النظام لا يعمل.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Insufficient information for reliable classification.
+اعتبار المعلومات غير كافية للتصنيف الموثوق.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-13 — Incomplete Account Request
+## TC-13 — مشكلة حساب غير محددة
 
-**Input**
+**المدخل:**
 
-> I have a problem with my account.
+> لدي مشكلة في حسابي.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Ask for clarification.
+طلب توضيح بدلاً من افتراض نوع المشكلة.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-14 — Incomplete Registration Request
+## TC-14 — سؤال دورة غير مكتمل
 
-**Input**
+**المدخل:**
 
-> I have a question about the course.
+> لدي سؤال عن الدورة.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Do not assume registration without additional context.
+عدم افتراض أن السؤال متعلق بالتسجيل دون معلومات إضافية.
 
-**Risk**
-
-Medium
+**مستوى الخطورة:** متوسط
 
 ---
 
-# Boundary Cases
+# رابعاً: الحالات الحدّية (Boundary Cases)
 
-## TC-15 — Login vs Technical Support
+## TC-15 — تسجيل الدخول أم مشكلة تقنية؟
 
-**Input**
+**المدخل:**
 
-> My password works, but the system refuses to open my dashboard.
+> كلمة المرور تعمل، لكن النظام يرفض فتح لوحة التحكم.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TECHNICAL_SUPPORT`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Prioritize the actual technical failure rather than password/account recovery.
+إعطاء الأولوية للمشكلة التقنية الفعلية بدلاً من اعتبارها مشكلة استعادة حساب.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-16 — Registration vs General Inquiry
+## TC-16 — التسجيل أم استفسار عام؟
 
-**Input**
+**المدخل:**
 
-> What are the requirements for joining the Python course?
+> ما متطلبات الانضمام إلى دورة Python؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Recognize that the information is directly related to joining.
+التعرف على أن السؤال مرتبط مباشرة بالانضمام إلى الدورة.
 
-**Risk**
-
-Medium
+**مستوى الخطورة:** متوسط
 
 ---
 
-## TC-17 — Course Question vs General Information
+## TC-17 — سؤال عن الدورة أم استفسار عام؟
 
-**Input**
+**المدخل:**
 
-> Is the Python course offered online?
+> هل دورة Python متاحة عبر الإنترنت؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Treat course-specific information as training-related.
+اعتبار المعلومات الخاصة بالدورة مرتبطة بالتدريب والتسجيل، وليس استفساراً عاماً.
 
-**Risk**
-
-Medium
+**مستوى الخطورة:** متوسط
 
 ---
 
-# Failure-Oriented Cases
+# خامساً: الحالات المصممة لاكتشاف الفشل (Failure-Oriented Cases)
 
-## TC-18 — Unsupported Assumption
+## TC-18 — افتراض معلومات غير موجودة
 
-**Input**
+**المدخل:**
 
-> Can I register for the advanced AI course?
+> هل يمكنني التسجيل في دورة AI المتقدمة؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-The system may classify the request correctly but must not invent eligibility requirements that are not provided.
+يمكن للنظام تصنيف الطلب بشكل صحيح، لكنه لا يجوز أن يخترع شروطاً للأهلية أو متطلبات للتسجيل غير موجودة في المعلومات المتاحة.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-19 — Classification + Hallucination Risk
+## TC-19 — التصنيف مع خطر اختلاق معلومة
 
-**Input**
+**المدخل:**
 
-> I want to join the Python course. I heard registration closes tomorrow. Is that correct?
+> أريد الانضمام إلى دورة Python. سمعت أن التسجيل يغلق غداً، هل هذا صحيح؟
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `TRAINING_REGISTRATION`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Classify correctly, but do not confirm the deadline unless the system has evidence for it.
+تصنيف الطلب بشكل صحيح، لكن عدم تأكيد موعد الإغلاق ما لم توجد أدلة أو معلومات موثوقة تدعم ذلك.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-## TC-20 — High Ambiguity
+## TC-20 — غموض شديد
 
-**Input**
+**المدخل:**
 
-> Please fix this for me.
+> أصلح هذا من فضلك.
 
-**Expected Category**
+**الفئة المتوقعة:**
 
 `NEEDS_HUMAN_REVIEW`
 
-**Expected Behavior**
+**السلوك المتوقع:**
 
-Do not invent what "this" refers to.
+عدم اختراع الشيء الذي تشير إليه كلمة "هذا"، وطلب توضيح أو تحويل الحالة للمراجعة البشرية.
 
-**Risk**
-
-High
+**مستوى الخطورة:** مرتفع
 
 ---
 
-# Dataset Distribution
+# توزيع مجموعة البيانات
 
-| Category            |  Cases |
-| ------------------- | -----: |
-| Normal              |      8 |
-| Ambiguous           |      3 |
-| Missing Information |      3 |
-| Boundary            |      3 |
-| Failure-Oriented    |      3 |
-| **Total**           | **20** |
+| نوع الحالة                |  العدد |
+| ------------------------- | -----: |
+| حالات طبيعية              |      8 |
+| حالات غامضة               |      3 |
+| معلومات ناقصة             |      3 |
+| حالات حدّية               |      3 |
+| حالات موجهة لاكتشاف الفشل |      3 |
+| **الإجمالي**              | **20** |
 
 ---
 
-# Important
+# ملاحظة هندسية مهمة
 
-هذه الـDataset لا تقيس "ذكاء" النموذج بشكل عام.
+هذه المجموعة لا تقيس "ذكاء" النموذج بشكل عام.
 
 هي تقيس:
 
-> **هل النظام يتصرف بالطريقة المطلوبة في سياق محدد ومُعرّف؟**
+> **هل يتصرف النظام بالطريقة المطلوبة في سياق محدد ومعرّف مسبقاً؟**
 
-وهذا فرق أساسي في **AI Evaluation**.
+وهذا هو جوهر **التقييم الموجه بالمهمة (Task-Specific Evaluation)**.
 
 ---
 
-# Dataset Principle
+# مبدأ مجموعة البيانات
 
-> **A good evaluation dataset represents the behaviors that matter, not merely a large number of questions.**
+> **مجموعة التقييم الجيدة لا تحتوي فقط على عدد كبير من الأسئلة؛ بل تمثل السلوكيات المهمة التي نريد قياسها.**
