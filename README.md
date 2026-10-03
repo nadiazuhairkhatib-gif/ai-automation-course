@@ -1,21 +1,377 @@
-# AI Automation Course
+# AI Automation
 
-> From AI Users to AI Automation Solution Builders
+### From Using AI to Engineering AI-Powered Solutions
 
-A 40-hour, hands-on course designed to develop the ability to understand real-world problems, design AI-enabled solutions, build working prototypes, test them, diagnose failures, improve them, and explain the engineering decisions behind them.
+> **AI is not the workflow. AI is part of the workflow.**
 
 ---
 
-## Course Philosophy
+## 01 — Course Goal
 
-We are not teaching AI tools.
+هذا الكورس لا يهدف إلى تعليمك مجموعة من أدوات الذكاء الاصطناعي.
 
-We are teaching people how to:
+الهدف هو أن تتعلم كيف **تفهم مشكلة حقيقية، تصمم لها حلًا، تبنيه، تختبره، تكشف فشله، تصلح الخلل، وتشرح قراراتك الهندسية**.
 
-**Think → Design → Build → Test → Debug → Evaluate → Explain → Engineer**
+بنهاية الكورس، نريد أن تنتقل من:
 
-The goal is not to memorize tools or follow tutorials.
+> **“I want to use AI.”**
 
-The goal is to learn how to turn a real problem into a working, testable AI-powered solution.
+إلى:
 
-> **AI is not the workflow. AI is part of the workflow.**
+> **“I understand the problem, and I know where, how, and why AI should participate in the solution.”**
+
+---
+
+## 02 — Learning Outcomes
+
+بنهاية الكورس، ستكون قادرًا على:
+
+* تحليل مشكلة عمل حقيقية وتحويلها إلى مشكلة قابلة للهندسة.
+* تصميم حلول تستخدم AI عندما يكون استخدامه مناسبًا.
+* بناء أنظمة وWorkflows تتعامل مع البيانات والأدوات والقرارات.
+* اختبار الأنظمة وتقييم سلوكها بالأدلة.
+* اكتشاف الأخطاء وتشخيص أسبابها وإصلاحها.
+* التعامل مع Reliability, Security & Risk ضمن تصميم الحل.
+* شرح قراراتك الهندسية وقيود الحل الذي بنيته.
+* نقل ما تعلمته إلى مشكلة جديدة لم تُبنَ أمامك مسبقًا.
+
+> **The goal is not to know more tools.
+> The goal is to make better engineering decisions.**
+
+---
+
+## 03 — Learning Journey
+
+رحلتنا خلال الكورس:
+
+**WORK → SYSTEM → QUALITY → KNOWLEDGE → AGENCY → INTEGRATION → RELIABILITY → SOLUTION**
+
+ننتقل تدريجيًا من فهم العمل الحقيقي، إلى بناء الأنظمة، وإثبات جودتها، وإضافة المعرفة والقدرة على اتخاذ الإجراءات، ثم ربط الأنظمة، والتعامل مع الفشل، وصولًا إلى **Solution Engineering**.
+
+---
+
+## 04 — Course Map
+
+### 01 — Work
+
+نفهم العمل الحقيقي ونحوّله إلى شيء يمكن تحليله وتصميمه وهندسته.
+
+### 02 — System
+
+نحوّل مشكلة العمل إلى نظام يمكن للإنسان استخدامه والتفاعل معه.
+
+### 03 — Quality
+
+نتعلم كيف نثبت أن النظام يعمل كما ينبغي، وكيف نعرف لماذا يفشل.
+
+### 04 — Knowledge
+
+نتعلم كيف نبني أنظمة تعتمد على معرفة موثوقة بدل الاعتماد على التوليد وحده.
+
+### 05 — Agency
+
+نستكشف كيف يمكن للـAI أن يتخذ خطوات ويستخدم أدوات ضمن حدود وضوابط واضحة.
+
+### 06 — Integration
+
+نربط الأنظمة والبيانات والأدوات لبناء Workflows قابلة للتنفيذ.
+
+### 07 — Reliability
+
+نصمم الحلول مع أخذ الفشل، الاستعادة، الأمان، وسلامة البيانات بعين الاعتبار.
+
+### 08 — Solution
+
+نستخدم ما تعلمناه لحل مشكلة جديدة واتخاذ قرارات هندسية متكاملة.
+
+> **The details of each unit are discovered through the learning journey.**
+
+---
+
+## 05 — How We Learn
+
+لن يكون التعلم قائمًا على مشاهدة الشرح ثم تقليده.
+
+المنهج الأساسي هو:
+
+**Challenge → Understand → Model → Design → Build → Test → Break → Diagnose → Fix → Retest → Explain → Transfer**
+
+ستعمل على مشكلات حقيقية، وتبني حلولًا فعلية، ثم تختبرها وتحاول كسرها وتكتشف سبب الفشل وتصلحه.
+
+> **Building teaches you how to make something work.
+> Breaking teaches you how to engineer it.**
+
+---
+
+## 06 — What You Will Do
+
+### Guided Real-World Projects
+
+نبني حلولًا واقعية معًا لفهم طريقة التفكير والتصميم الهندسي.
+
+### Independent Applications
+
+تواجه مشكلة جديدة مشابهة في طبيعتها، لكنك تبني الحل بنفسك لتثبت أنك فهمت **الطريقة وليس الخطوات**.
+
+### Technical Research & Pitches
+
+تبحث في مفهوم تقني محدد، ثم تشرحه لزملائك بوضوح مع أمثلة وتطبيقات ومصادر موثوقة.
+
+### NOVA
+
+تطوّر مشروعًا هندسيًا واحدًا عبر الكورس، بحيث ينمو مع تطور فهمك ومهاراتك.
+
+---
+
+## 07 — NOVA
+
+**NOVA** هو مشروعك الهندسي الممتد عبر الكورس.
+
+لن تبني ثمانية مشاريع منفصلة ثم تنتهي.
+
+ستبدأ بفكرة واحدة، ثم تطورها تدريجيًا مع تطور فهمك ومهاراتك.
+
+الهدف ليس حجم المشروع.
+
+الهدف أن نرى كيف يتطور تفكيرك الهندسي:
+
+**Understand → Design → Build → Evaluate → Improve → Engineer**
+
+---
+
+## 08 — Assessment
+
+لن نقيس تعلمك بسؤال:
+
+> **“هل استطعت تشغيل الأداة؟”**
+
+سننظر إلى قدرتك على:
+
+* فهم المشكلة.
+* تصميم الحل.
+* اتخاذ قرارات AI صحيحة.
+* التعامل مع البيانات.
+* اختبار النظام وتقييمه.
+* اكتشاف الأخطاء وتشخيصها.
+* التعامل مع الفشل والمخاطر.
+* شرح ما بنيته ولماذا بنيته بهذه الطريقة.
+* نقل ما تعلمته إلى مشكلة جديدة.
+
+قد يعمل نظامك وتظل بعض قراراتك الهندسية ضعيفة.
+
+وقد يفشل النظام في تجربة ما، لكن قدرتك على اكتشاف السبب وتحليله وإصلاحه تكون دليلًا قويًا على التعلم.
+
+> **Quality of reasoning matters more than project size.**
+
+---
+
+## 09 — How We Use AI
+
+استخدام AI جزء طبيعي من هذا الكورس.
+
+يمكنك استخدامه في:
+
+* التعلم والبحث.
+* الاستكشاف وتوليد الأفكار.
+* كتابة الكود.
+* تحليل الأخطاء.
+* تحسين الحلول.
+* التوثيق.
+
+لكن:
+
+> **Using AI does not transfer responsibility to AI.**
+
+يجب أن تفهم ما تستخدمه، وتتحقق من النتائج، وتختبر الحل، وتتحمل مسؤولية ما تقدمه.
+
+---
+
+## 10 — Tools
+
+ستتعامل مع أدوات وتقنيات مختلفة خلال الرحلة.
+
+لكننا لن نتعامل معها باعتبارها الهدف.
+
+> **Tools are means, not ends.**
+
+الأداة التي تتعلمها اليوم قد تتغير غدًا.
+
+أما قدرتك على **فهم المشكلة، تصميم الحل، اختبار النظام، وتشخيص الفشل** فهي المهارة التي نريد أن تبقى معك.
+
+---
+
+## 11 — GitHub
+
+GitHub هو مساحة **Learning & Submission** الخاصة بالكورس.
+
+ستستخدم مستودعك من أجل:
+
+* حفظ أعمالك.
+* توثيق قراراتك.
+* رفع التطبيقات والملفات المطلوبة.
+* تسجيل الاختبارات والأدلة.
+* تسليم Assignments.
+* متابعة تطور NOVA.
+
+القاعدة الأساسية:
+
+> **Build → Explain → Document**
+
+لا نريد مجرد ملفات تعمل.
+
+نريد أن نعرف **ماذا بنيت، لماذا بنيته، وكيف عرفت أنه يعمل.**
+
+---
+
+## 12 — Discord
+
+Discord هو مساحة **Learning Community**.
+
+ستستخدمه من أجل:
+
+* الأسئلة والنقاشات التقنية.
+* مشاركة المصادر.
+* Troubleshooting.
+* البحث الجماعي.
+* Research Pitches.
+* مشاركة ما تعلمته مع الآخرين.
+
+الهدف ليس أن يصبح Discord مكتب دعم تقني.
+
+بل مساحة تتعلم فيها كيف:
+
+> **Ask → Investigate → Explain → Help**
+
+---
+
+## 13 — Engineering Mindset
+
+خلال الكورس سنبني عقلية مختلفة تجاه AI.
+
+لا تبدأ بالسؤال:
+
+> **“ما الأداة التي أستخدمها؟”**
+
+ابدأ بالسؤال:
+
+> **“ما المشكلة التي أحاول حلها؟”**
+
+ثم:
+
+> **“ما النتيجة التي نريدها؟”**
+
+> **“كيف يحدث العمل الآن؟”**
+
+> **“كيف يجب أن يعمل بعد بناء الحل؟”**
+
+> **“أين يحتاج الحل إلى AI؟”**
+
+> **“أين نحتاج Rule أو Human؟”**
+
+> **“كيف نعرف أن الحل يعمل؟”**
+
+> **“ماذا يحدث عندما يفشل؟”**
+
+هذه الأسئلة أهم من حفظ أسماء الأدوات.
+
+---
+
+## 14 — What This Course Is Not
+
+هذا الكورس ليس:
+
+* قائمة أدوات AI.
+* مجموعة Tutorials منفصلة.
+* كورس Prompt Engineering فقط.
+* تدريبًا على جعل AI يقوم بكل شيء.
+* سباقًا لمعرفة أكبر عدد من الأدوات.
+* مشروعًا ضخمًا لمجرد إثبات التعقيد.
+
+نحن نبني **قدرة هندسية قابلة للنقل بين الأدوات والمشكلات.**
+
+---
+
+## 15 — What Is Expected From You?
+
+أنت لا تحتاج إلى معرفة كل شيء قبل البداية.
+
+لكن يُتوقع منك أن:
+
+* تأتي مستعدًا للتجربة.
+* تسأل عندما لا تفهم.
+* تحاول قبل طلب الحل.
+* تختبر ما تبنيه.
+* لا تقبل مخرجات AI دون تحقق.
+* توثق عملك.
+* تشرح قراراتك.
+* تتعلم من الفشل.
+* تساهم في بناء بيئة تعلم جماعية.
+
+> **You are not expected to know everything.
+> You are expected to learn how to figure things out.**
+
+---
+
+## 16 — No Prior Research Required
+
+لا تحتاج إلى البحث مسبقًا عن محتوى الوحدات أو دراسة الأدوات قبل كل جلسة.
+
+سنقدم لك ما تحتاجه في الوقت المناسب.
+
+إذا أردت التحضير، ركّز على سؤال واحد:
+
+> **What problem am I trying to solve?**
+
+---
+
+## 17 — Course Structure
+
+**8 Units × 5 Hours = 40 Hours**
+
+كل وحدة تتضمن تجربة تعلم عملية تجمع بين التحدي، الفهم، البناء، التطبيق، البحث، والتطوير المستمر لمشروع NOVA.
+
+لكن **شكل التحديات والمشاريع والمفاهيم سيُكتشف داخل الرحلة**.
+
+لا تحتاج إلى دراسة الوحدات مسبقًا.
+
+---
+
+## 18 — Start Here
+
+ابدأ من مستودع الكورس:
+
+```text
+NOVA-AI-AUTOMATION/
+```
+
+ثم افتح:
+
+```text
+README.md
+```
+
+وابحث عن:
+
+**START HERE → CHALLENGE**
+
+لا تبدأ بالبحث عن الأدوات.
+
+**ابدأ بالمشكلة.**
+
+---
+
+# The Principle
+
+> **Understand the work.
+> Design the system.
+> Build it.
+> Prove it works.
+> Break it.
+> Fix it.
+> Explain it.
+> Transfer it.**
+
+### AI Automation
+
+**From using AI
+to understanding, building, evaluating, and engineering with AI.**
