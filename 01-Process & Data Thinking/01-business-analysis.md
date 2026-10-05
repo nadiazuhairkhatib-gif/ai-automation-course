@@ -1,488 +1,501 @@
 # 01 — Business Analysis
 
-# تحليل المشكلة والعملية التجارية
+> **Layer 01 — Understand the Work**
 
-## 1. فكرة المشروع
+هذا الملف هو نقطة البداية في المشروع.
 
-الشركة تستقبل طلبات العملاء للحصول على خدمات مختلفة، مثل:
+قبل أن نستخدم **AI** أو **Zapier** أو نصمم أي **Automation**، يجب أولًا أن نفهم العمل الذي نريد تحسينه.
 
-* تصميم المواقع
-* تصميم صفحات الهبوط (Landing Pages)
-* التصميم الجرافيكي
-* التسويق الرقمي
-* تطوير التطبيقات
-* خدمات الذكاء الاصطناعي والأتمتة
+المبدأ:
 
-طلبات العملاء تصل غالبًا باللغة الطبيعية، من خلال نموذج (Form) أو بريد إلكتروني (Email).
-
-مثال:
-
-> نريد موقعًا لشركتنا الجديدة، ونفضل أن يكون جاهزًا الشهر القادم، لكننا لم نحدد الميزانية بعد.
-
-المشكلة ليست أن الموظف لا يستطيع قراءة الرسالة.
-
-المشكلة هي أن الرسالة تحتوي على معلومات غير منظمة، بينما الشركة تحتاج إلى معلومات منظمة يمكن استخدامها لاتخاذ قرار وتنفيذ إجراء.
+> **Think First. Build Later.**
 
 ---
 
-## 2. المشكلة التجارية
+# 1. Business Scenario
 
-العملية الحالية تعتمد بدرجة كبيرة على الإنسان:
+نحن نعمل مع شركة خدمات تستقبل طلبات العملاء عبر **Email** أو **Form**.
 
-**Client → Email/Form → Employee Reads → Understands → Extracts Information → Decides → Records → Notifies Team**
+قد يرسل العميل طلبًا مثل:
 
-الموظف يحتاج إلى:
+> "مرحبًا، نريد موقعًا لشركتنا الجديدة، ونفضل أن يكون جاهزًا الشهر القادم، لكننا لم نحدد الميزانية بعد."
+
+الطلب مفهوم للإنسان، لكنه بالنسبة للنظام عبارة عن **Unstructured Data**.
+
+الموظف يحتاج إلى قراءة الطلب وفهمه واستخراج المعلومات المهمة وتحديد ما يجب أن يحدث بعد ذلك.
+
+مع زيادة عدد الطلبات، يصبح هذا العمل متكررًا ويحتاج إلى طريقة أكثر تنظيمًا.
+
+---
+
+# 2. Work
+
+## What is the Work?
+
+الـ**Work** هو العمل الذي تقوم به الشركة للوصول إلى نتيجة معينة.
+
+في حالتنا:
+
+> **استقبال طلبات العملاء وفهمها ومعالجتها وتوجيهها إلى الإجراء أو الشخص المناسب.**
+
+بشكل مبسط:
+
+```text
+Receive Client Request
+        ↓
+Understand Request
+        ↓
+Collect Required Information
+        ↓
+Determine Next Step
+        ↓
+Route Request
+        ↓
+Follow Up / Take Action
+```
+
+### السؤال الذي نطرحه:
+
+> **What work are we improving?**
+
+الإجابة:
+
+> نحن نحسن عملية **Client Request Intake & Routing**.
+
+---
+
+# 3. Problem
+
+## ما المشكلة؟
+
+المشكلة ليست أن الشركة "لا تستخدم AI".
+
+المشكلة هي أن معالجة طلبات العملاء تعتمد بشكل كبير على العمل اليدوي.
+
+حاليًا، الموظف يحتاج إلى:
 
 1. قراءة الطلب.
 2. فهم ما يريده العميل.
-3. تحديد الخدمة المطلوبة.
-4. استخراج الموعد إن وجد.
-5. استخراج الميزانية إن وجدت.
-6. معرفة المعلومات الناقصة.
-7. تحديد الفريق المناسب.
-8. تسجيل المعلومات.
-9. إبلاغ الفريق.
+3. استخراج المعلومات المهمة.
+4. معرفة المعلومات الناقصة.
+5. تحديد نوع الطلب.
+6. تحديد الخطوة التالية.
+7. تسجيل البيانات.
+8. توجيه الطلب.
+9. متابعة الحالات التي تحتاج إلى تدخل بشري.
 
-مع زيادة عدد الطلبات، تصبح هذه العملية:
+ومع زيادة الطلبات، قد تصبح العملية:
 
 * بطيئة.
-* قابلة للأخطاء.
-* غير موحدة بين الموظفين.
-* صعبة التتبع.
-* معرضة لفقدان معلومات مهمة.
+* غير متسقة.
+* معرضة للنسيان.
+* صعبة التوسع.
+
+### Problem Statement
+
+> **Client requests arrive as unstructured information, requiring employees to manually understand, organize, validate, and route each request.**
 
 ---
 
-## 3. Current State — الحالة الحالية
+# 4. Pain Points
+
+المشكلة العامة تحتوي على عدة **Pain Points**.
+
+## Pain Point 01 — Manual Repetitive Work
+
+الموظف يكرر نفس خطوات القراءة والاستخراج والتسجيل لكل طلب.
+
+---
+
+## Pain Point 02 — Unstructured Requests
+
+العملاء لا يرسلون المعلومات دائمًا بنفس الشكل.
+
+مثال:
 
 ```text
-Client
-   ↓
-Request
-   ↓
-Email / Form
-   ↓
-Employee
-   ↓
-Read & Understand
-   ↓
-Extract Information
-   ↓
-Make Decision
-   ↓
-Record Data
-   ↓
-Notify Team
+"أريد موقعًا للشركة."
+
+"نحتاج موقعًا لشركتنا الجديدة ويكون جاهزًا الشهر القادم."
+
+"حابين نعمل موقع، الميزانية لسه مش محددة."
 ```
 
-في هذه العملية، معظم الفهم والقرار والتنفيذ يعتمد على الموظف.
+المعلومات تختلف من طلب إلى آخر.
 
 ---
 
-## 4. Desired Outcome — النتيجة المطلوبة
+## Pain Point 03 — Missing Information
 
-نريد تحويل الطلب غير المنظم إلى عملية يمكن للنظام التعامل معها:
+قد يحتاج الطلب إلى معلومات غير موجودة.
+
+مثال:
+
+```text
+Service: Website
+Timeline: Next Month
+Budget: Missing
+```
+
+المشكلة ليست أن النظام لا يعرف الميزانية.
+
+المشكلة أن:
+
+> **العميل لم يقدمها.**
+
+---
+
+## Pain Point 04 — Inconsistent Decisions
+
+قد يعالج موظفان نفس النوع من الطلبات بطريقة مختلفة.
+
+---
+
+## Pain Point 05 — Delayed Routing
+
+قد يتأخر إرسال الطلب إلى الشخص أو الفريق المناسب.
+
+---
+
+## Pain Point 06 — Risk of Assumptions
+
+عند نقص المعلومات قد يميل الإنسان أو النظام إلى الافتراض.
+
+مثلاً:
+
+```text
+Client did not mention budget
+        ↓
+Assume budget = $1000
+```
+
+وهذا غير آمن.
+
+المبدأ الذي سنحافظ عليه في المشروع:
+
+> **Unknown is better than invented.**
+
+---
+
+# 5. Current State
+
+الـ**Current State** يصف كيف يحدث العمل الآن، قبل بناء الحل.
+
+```text
+                CURRENT STATE
+
+Client
+  ↓
+Sends Request
+  ↓
+Employee Receives Request
+  ↓
+Reads Request
+  ↓
+Understands Request
+  ↓
+Extracts Information
+  ↓
+Checks Missing Information
+  ↓
+Decides What To Do
+  ↓
+Records Information
+  ↓
+Routes Request
+  ↓
+Human Follow-up / Action
+```
+
+هذه العملية تعتمد بدرجة كبيرة على الإنسان.
+
+وهذا لا يعني أن الإنسان هو المشكلة.
+
+بل يعني أننا نحتاج إلى تحديد:
+
+> **أي أجزاء من العمل يمكن للنظام مساعدتنا فيها؟ وأي أجزاء يجب أن تبقى تحت مسؤولية الإنسان؟**
+
+---
+
+# 6. Desired Outcome
+
+لا نريد أن يكون الهدف:
+
+> "نريد استخدام AI."
+
+هذا ليس **Business Outcome**.
+
+الهدف هو:
+
+> **تحويل طلب العميل غير المنظم إلى معلومات منظمة وقابلة للتحقق، ثم تحديد المسار المناسب للطلب مع إشراك الإنسان عندما تكون هناك حاجة إلى حكم بشري.**
+
+نريد أن تصبح العملية:
 
 ```text
 Client Request
       ↓
-Trigger
+Understand
       ↓
-AI Understanding
+Structure
       ↓
-Structured Data
+Validate
       ↓
-Validation
+Decide
       ↓
-Decision
+Route
       ↓
-Routing
-      ↓
-Record
-      ↓
-Notification / Human Review
-```
-
-الهدف ليس إزالة الإنسان من العملية.
-
-الهدف هو جعل النظام يتولى العمل المتكرر والمنظم، بينما يتدخل الإنسان عندما تكون المعلومات ناقصة أو غامضة أو متعارضة.
-
----
-
-## 5. الهدف التجاري
-
-النظام يجب أن يساعد الشركة على:
-
-* فهم طلب العميل بسرعة.
-* استخراج المعلومات المهمة.
-* عدم اختراع معلومات غير موجودة.
-* اكتشاف المعلومات الناقصة.
-* اكتشاف المعلومات الغامضة أو المتعارضة.
-* توجيه الطلب للفريق المناسب.
-* تسجيل البيانات بطريقة منظمة.
-* تقليل العمل اليدوي.
-* جعل عملية استقبال العملاء قابلة للتتبع.
-
----
-
-## 6. Stakeholders — الأطراف المعنية
-
-### العميل
-
-يرسل طلب الخدمة باللغة الطبيعية.
-
-### موظف استقبال الطلبات
-
-يتعامل مع الحالات التي تحتاج إلى مراجعة أو توضيح.
-
-### فريق الخدمة
-
-يستقبل الطلبات المؤهلة والمصنفة.
-
-### مدير الشركة
-
-يحتاج إلى بيانات منظمة يمكن الاعتماد عليها.
-
-### النظام
-
-يستخرج المعلومات، يتحقق منها، ويطبق القواعد المحددة.
-
----
-
-# 7. تحليل العمل باستخدام Mental Model
-
-سنحلل العمل من:
-
-**Work → Problem → Current State → Desired Outcome → Success Criteria → Task → Subtask → Dependency → Sequence → Process → Workflow → Trigger → Input/Data → AI/Rule/Human → Structured Output → Validation**
-
----
-
-## Work
-
-استقبال طلبات العملاء وتأهيلها وتوجيهها.
-
----
-
-## Problem
-
-طلبات العملاء تصل بشكل غير منظم، ويحتاج الموظف إلى قراءة كل طلب وفهمه واستخراج البيانات واتخاذ القرار يدويًا.
-
----
-
-## Current State
-
-العميل يرسل الطلب → الموظف يقرأه → يفهمه → يستخرج البيانات → يسجلها → يقرر الفريق → يرسل الإشعار.
-
----
-
-## Desired Outcome
-
-تحويل الطلب الطبيعي إلى بيانات منظمة والتحقق منها ثم اتخاذ الإجراء المناسب.
-
----
-
-## Success Criteria
-
-ينجح النظام إذا:
-
-* استخرج المعلومات الموجودة فعلًا.
-* لم يخترع معلومات.
-* اكتشف المعلومات الناقصة.
-* اكتشف الغموض.
-* أنتج بيانات منظمة.
-* منع الحالات غير الصالحة من الانتقال مباشرة.
-* أرسل الحالات غير الواضحة إلى الإنسان.
-
----
-
-## Task
-
-معالجة طلب العميل وتأهيله.
-
----
-
-## Subtasks
-
-1. استقبال الطلب.
-2. استخراج البيانات.
-3. تصنيف الخدمة.
-4. تحديد الموعد.
-5. تحديد الميزانية.
-6. تحديد الأولوية.
-7. اكتشاف المعلومات الناقصة.
-8. اكتشاف الغموض.
-9. التحقق من البيانات.
-10. اتخاذ القرار.
-11. توجيه الطلب.
-12. تسجيل الطلب.
-13. إرسال الإشعار.
-
----
-
-## Dependencies
-
-يعتمد النظام على:
-
-* وصول طلب العميل.
-* وجود نص يمكن تحليله.
-* قدرة نموذج الذكاء الاصطناعي على استخراج البيانات.
-* وجود Schema واضح.
-* وجود قواعد Validation.
-* وجود Routing Rules.
-* وجود مكان لتخزين البيانات.
-
----
-
-## Sequence
-
-```text
-Receive
-→ Understand
-→ Extract
-→ Structure
-→ Validate
-→ Decide
-→ Route
-→ Record
-→ Notify
+Record / Notify / Human Review
 ```
 
 ---
 
-## Process
+# 7. Success Criteria
 
-العملية هي الطريقة المتكررة التي يتم بها التعامل مع طلب العميل من لحظة وصوله حتى توجيهه وتسجيله.
+نحتاج إلى تحديد كيف سنعرف أن الحل يعمل بشكل جيد.
 
----
+## SC1 — Information Extraction
 
-## Workflow
-
-الـ Workflow هو التطبيق الآلي لهذه العملية:
-
-```text
-Trigger
-→ Input
-→ AI
-→ Structured Output
-→ Validation
-→ Decision
-→ Routing
-→ Record
-→ Notification
-```
+يستطيع النظام استخراج المعلومات الموجودة فعلًا في طلب العميل.
 
 ---
 
-## Trigger
+## SC2 — No Fabrication
 
-وصول طلب جديد من العميل.
-
-في التطبيق العملي سيكون المصدر الأساسي:
-
-**Google Forms**
-
----
-
-## Input / Data
-
-البيانات الداخلة قد تتضمن:
-
-* اسم العميل.
-* البريد الإلكتروني.
-* الشركة.
-* نص الطلب.
-
----
-
-## AI
-
-يستخدم الذكاء الاصطناعي عندما نحتاج إلى:
-
-* فهم اللغة الطبيعية.
-* استخراج المعلومات.
-* تصنيف الطلب.
-* تلخيص الطلب.
-* اكتشاف المعلومات الناقصة.
-* اكتشاف الغموض.
-
----
-
-## Rule
-
-تستخدم القواعد عندما يكون القرار واضحًا وقابلًا للتحديد.
+إذا كانت المعلومة غير موجودة، لا يتم اختراعها.
 
 مثال:
 
 ```text
-IF service = "Web Development"
-THEN route = "Web Team"
+Client:
+"We need a website next month."
+
+Output:
+
+service = website
+timeline = next month
+budget = null
 ```
 
----
-
-## Human
-
-يستخدم الإنسان عندما:
-
-* تكون المعلومات غامضة.
-* توجد معلومات متعارضة.
-* توجد معلومات مهمة ناقصة.
-* لا يستطيع النظام الوصول إلى قرار موثوق.
-
----
-
-## Structured Output
-
-بدل أن يعيد AI فقرة طويلة، يجب أن يعيد بيانات منظمة وفق Data Contract محدد.
-
-مثال:
+وليس:
 
 ```text
-service: "Landing Page"
-budget: 800
-deadline: "2026-10-15"
-needs_clarification: false
+budget = $1000
 ```
 
 ---
 
-## Validation
+## SC3 — Structured Information
 
-لا نعتبر مخرجات AI صحيحة لمجرد أن AI أنتجها.
-
-يجب فحصها قبل اتخاذ القرار:
-
-```text
-AI
- ↓
-Validation
- ↓
-Decision
- ↓
-Action
-```
+يتم تحويل الـ**Unstructured Data** إلى **Structured Data** وفق Schema واضح.
 
 ---
 
-# 8. لماذا نستخدم AI هنا؟
+## SC4 — Missing Information Detection
 
-الجزء الصعب هو أن العميل لا يكتب البيانات بالصيغة التي يحتاجها النظام.
-
-مثلاً:
-
-> نحتاج موقعًا جديدًا ونريد إطلاقه الشهر القادم، والميزانية لسه مش محددة.
-
-AI يستطيع فهم أن:
-
-* الخدمة = Website
-* الموعد = الشهر القادم
-* الميزانية = غير محددة
-
-لكن AI لا يجب أن يقرر وحده كل شيء.
+يستطيع النظام تحديد المعلومات المطلوبة التي لم يقدمها العميل.
 
 ---
 
-# 9. أين نستخدم Rules؟
+## SC5 — Validation
 
-القواعد مناسبة للقرارات الحتمية.
-
-مثال:
-
-```text
-IF service = Website
-→ Web Team
-
-IF service = Graphic Design
-→ Design Team
-
-IF service = Marketing
-→ Marketing Team
-
-IF service = AI Automation
-→ Automation Team
-
-IF service = Unknown
-→ Human Review
-```
+لا يتم التعامل مع البيانات غير الكافية كما لو كانت صحيحة وكاملة.
 
 ---
 
-# 10. أين نستخدم Human؟
+## SC6 — Appropriate Routing
 
-إذا قال العميل:
+يذهب الطلب إلى المسار المناسب بناءً على المعلومات والـRules المحددة.
 
-> نحتاج الموقع الأسبوع القادم.
+---
 
-هذه ليست بالضرورة معلومة كافية لاتخاذ إجراء.
+## SC7 — Human Escalation
 
-"الأسبوع القادم" قد تكون واضحة لغويًا لكنها غير دقيقة تشغيليًا.
+الحالات التي تحتاج إلى حكم بشري يتم تحويلها إلى **Human-in-the-Loop**.
+
+---
+
+## SC8 — Explainability
+
+يمكننا تفسير سبب اتخاذ النظام للقرار:
+
+> Why did this request go to this path?
+
+---
+
+## SC9 — Testability
+
+يمكن اختبار النظام على حالات مختلفة، وليس فقط الحالة المثالية.
+
+---
+
+# 8. Business Success vs Technical Success
+
+من المهم التفريق بين نوعين من النجاح.
+
+## Technical Success
+
+قد يعني:
+
+> الـZap اشتغل بدون Error.
+
+لكن هذا وحده لا يكفي.
+
+قد يعمل الـZap تقنيًا ويعطي نتيجة خاطئة.
+
+## Business Success
+
+يعني:
+
+> النظام ساعد في تحسين العمل بالطريقة المطلوبة وحقق الـSuccess Criteria.
 
 لذلك:
 
 ```text
-Ambiguous Deadline
-→ Human Clarification
+Technical Success ≠ Business Success
+```
+
+وقد يكون:
+
+```text
+Zap works
++
+Wrong Decision
+=
+Failed Solution
 ```
 
 ---
 
-# 11. المبدأ الأساسي
+# 9. Scope of the Work
 
-لا نبني:
+نحن لا نبني نظام الشركة بالكامل.
 
-```text
-AI → Action
-```
+نحدد **Scope** واضحًا.
 
-بل:
+### داخل نطاق المشروع:
 
-```text
-AI
- ↓
-Validation
- ↓
-Decision
- ↓
-Action
-```
+* استقبال Client Request.
+* فهم الطلب.
+* استخراج المعلومات.
+* تحويلها إلى Structured Data.
+* اكتشاف Missing Information.
+* Validation.
+* تحديد المسار.
+* Routing.
+* Human Review للحالات المناسبة.
+* تسجيل النتيجة.
+* Notification.
 
-لأن مخرجات AI تحتاج إلى فحص قبل استخدامها في عملية حقيقية.
-
----
-
-# 12. حدود المشروع
-
-هذا المشروع لا يحاول بناء:
+### خارج نطاق المشروع:
 
 * CRM كامل.
 * Customer Portal.
 * Dashboard.
+* Advanced Lead Scoring.
 * AI Agent.
-* Multi-Agent System.
 * RAG.
-* قاعدة بيانات معقدة.
-* Backend مخصص.
-* API مخصص.
-* نظام WhatsApp متكامل.
+* Multi-Agent System.
+* Custom Backend.
+* Custom Database.
+* Advanced API Development.
 
-نحن نبني **Vertical Slice**:
+الهدف:
 
-> رحلة واحدة كاملة من Input إلى Action.
+> **Build one complete, testable Vertical Slice.**
 
 ---
 
-# 13. النتيجة النهائية
+# 10. Business Analysis Summary
 
-في نهاية المشروع يجب أن يكون لدينا Workflow يستطيع:
+يمكن تلخيص Layer 01 كالتالي:
 
-1. استقبال طلب العميل.
-2. فهم الطلب.
-3. استخراج البيانات.
-4. إنتاج Structured Output.
-5. اكتشاف النقص والغموض.
-6. تطبيق Validation.
-7. اتخاذ قرار.
-8. توجيه الطلب.
-9. تسجيله.
-10. إرسال إشعار مناسب.
-11. إرسال الحالات غير الواضحة إلى الإنسان.
+```text
+WORK
+Client Request Intake & Routing
+
+        ↓
+
+PROBLEM
+Manual handling of unstructured client requests
+
+        ↓
+
+PAIN POINTS
+Repetition
+Inconsistency
+Missing Information
+Delay
+Assumptions
+
+        ↓
+
+CURRENT STATE
+Human manually reads, understands,
+organizes, validates, and routes requests
+
+        ↓
+
+DESIRED OUTCOME
+Structured, validated, appropriately routed requests
+
+        ↓
+
+SUCCESS CRITERIA
+Correct Extraction
+No Fabrication
+Structured Data
+Validation
+Correct Routing
+Human Escalation
+Explainability
+Testability
+```
+
+---
+
+# 11. The Engineering Question
+
+بعد إنهاء هذا التحليل، لا ننتقل مباشرة إلى Zapier.
+
+السؤال التالي هو:
+
+> **How can we break this Work into a clear Process and Workflow?**
+
+لأننا عرفنا الآن:
+
+* ماذا نريد أن نحسن.
+* ما المشكلة.
+* أين توجد الـPain Points.
+* كيف يحدث العمل حاليًا.
+* ما النتيجة المطلوبة.
+* كيف نقيس النجاح.
+
+لكننا لم نحدد بعد:
+
+> **ما هي الخطوات الفعلية التي يتكون منها هذا العمل؟**
+
+وهذا يقودنا إلى:
+
+# Layer 02 — Decompose the Work
+
+في الملف التالي:
+
+`02-workflow-decomposition.md`
+
+سنحوّل هذا العمل من فكرة عامة إلى:
+
+```text
+Process
+   ↓
+Workflow
+   ↓
+Task
+   ↓
+Subtask
+   ↓
+Sequence
+   ↓
+Dependency
+```
+
+ثم نستخدم هذا التصميم كأساس لفهم الـ**Trigger** والـ**Input** والبيانات في الملف الثالث.
