@@ -1,422 +1,758 @@
-# U1 — نظام استقبال طلبات العملاء وتأهيلها وتوجيهها بالذكاء الاصطناعي
+# U1 — نظام استقبال طلبات العملاء وتحليلها وتوجيهها بالذكاء الاصطناعي
 
-**AI Client Intake & Lead Qualification System**
+## AI Client Intake & Request Routing System
 
-نظام أتمتة عملي يساعد شركة خدمات على استقبال طلبات العملاء غير المنظمة، وفهمها باستخدام الذكاء الاصطناعي، وتحويلها إلى بيانات منظمة، والتحقق منها، واكتشاف المعلومات الناقصة أو الغامضة، ثم توجيه الطلب إلى الإجراء المناسب.
+نظام أتمتة عملي يحوّل طلبات العملاء غير المنظمة إلى **Structured Data** قابلة للمعالجة، ثم يتحقق من البيانات، يكتشف المعلومات الناقصة أو الغامضة، ويحدد الإجراء المناسب باستخدام **AI + Rules + Human-in-the-Loop**.
+
+المشروع مصمم خصيصًا لتطبيق مفاهيم:
+
+> **U1 — Process & Data Thinking**
+
+والهدف منه ليس تعلم **Zapier** بحد ذاته، بل تطبيق طريقة التفكير التي تسبق بناء أي **AI Automation Solution**.
 
 ---
 
 # 1. فكرة المشروع
 
-تستقبل شركات الخدمات طلبات العملاء من خلال البريد الإلكتروني أو النماذج.
+تخيل شركة خدمات تستقبل طلبات العملاء عبر البريد الإلكتروني أو نموذج إلكتروني.
 
-غالبًا تصل هذه الطلبات باللغة الطبيعية، مثل:
+قد يصل الطلب بهذه الصورة:
 
 > "مرحبًا، نريد موقعًا لشركتنا الجديدة، ونفضل أن يكون جاهزًا الشهر القادم، لكننا لم نحدد الميزانية بعد."
 
 بالنسبة للإنسان، الرسالة مفهومة.
 
-لكن بالنسبة لنظام آلي، المعلومات ما زالت غير منظمة.
+لكن بالنسبة للنظام، البيانات ما زالت **Unstructured**.
 
-نحتاج إلى تحويلها من:
-
-```text
-لغة بشرية غير منظمة
-        ↓
-معلومات منظمة
-        ↓
-تحقق
-        ↓
-قرار
-        ↓
-إجراء
-```
-
-لذلك فالمشروع لا يهدف إلى "تلخيص رسالة العميل".
-
-بل يهدف إلى بناء **نظام Intake صغير ومتكامل** يستطيع تحويل طلب العميل إلى بيانات يمكن للنظام والفريق التعامل معها.
-
----
-
-# 2. المشكلة التجارية
-
-المشكلة الحالية في الشركة قد تكون:
+يحتاج النظام إلى فهم الطلب وتحويله إلى بيانات يمكن استخدامها:
 
 ```text
-العميل
-   ↓
-يرسل طلبًا
-   ↓
-الموظف يقرأه
-   ↓
-يفهم المطلوب
-   ↓
-يستخرج المعلومات
-   ↓
-يبحث عن المعلومات الناقصة
-   ↓
-يقرر ماذا يحدث
-   ↓
-يسجل البيانات
-   ↓
-يبلغ الفريق المناسب
-```
-
-هذا يؤدي إلى:
-
-* عمل يدوي متكرر.
-* اختلاف في طريقة معالجة الطلبات.
-* احتمال نسيان معلومات.
-* احتمال اختراع افتراضات عند نقص البيانات.
-* تأخر في التوجيه والمتابعة.
-* صعوبة في تحويل الطلبات إلى بيانات منظمة.
-
----
-
-# 3. الهدف
-
-نريد تحويل العملية إلى:
-
-```text
-طلب العميل
-    ↓
-Trigger
-    ↓
-فهم الطلب بالـAI
-    ↓
-بيانات منظمة
-    ↓
+Unstructured Request
+        ↓
+AI Understanding
+        ↓
+Structured Data
+        ↓
 Validation
-    ↓
-اكتشاف النقص والغموض
-    ↓
+        ↓
 Decision
-    ↓
+        ↓
 Routing
-    ↓
-تسجيل الطلب
-    ↓
-Notification / Human Review
+        ↓
+Action / Human Review
 ```
 
-المشروع عبارة عن **Vertical Slice**.
+لذلك لا نبني مجرد AI يقوم بـ **Summarization** للرسالة.
 
-أي أننا لا نبني نظام CRM كاملًا.
+نحن نبني **Vertical Slice** من عملية عمل حقيقية:
 
-بل نبني رحلة واحدة كاملة:
-
-> **من دخول طلب العميل حتى اتخاذ الإجراء المناسب بشأنه.**
+> **من لحظة وصول طلب العميل حتى تحديد ما يجب أن يحدث معه.**
 
 ---
 
-# 4. الهدف التعليمي
+# 2. Business Scenario
 
-هذا المشروع جزء من:
+الشركة تستقبل عددًا متزايدًا من طلبات العملاء.
 
-## U1 — AI for Work & Productivity
-
-لكن الهدف ليس تعلم Zapier فقط.
-
-الهدف هو تعلم كيفية التفكير في عملية عمل حقيقية ثم تحويلها إلى Workflow قابل للأتمتة.
-
-بعد إكمال المشروع، يجب أن يستطيع المتدرب:
-
-* تحليل مشكلة عمل حقيقية.
-* فهم الوضع الحالي.
-* تحديد النتيجة المطلوبة.
-* تحديد المهام والخطوات.
-* تحديد Trigger وInput.
-* تحديد أين نستخدم AI.
-* تحديد أين نستخدم Rule.
-* تحديد أين يحتاج النظام إلى Human.
-* تصميم Structured Output.
-* وضع Validation.
-* بناء Workflow باستخدام No-Code.
-* اختبار النظام.
-* اكتشاف الأخطاء.
-* تحليل السبب الجذري.
-* إصلاح النظام وإعادة اختباره.
-
----
-
-# 5. الأدوات
-
-الأداة الأساسية:
-
-**Zapier**
-
-وقد نستخدم معه:
-
-* Google Forms — إدخال الطلب.
-* Gmail — استقبال أو إرسال البريد.
-* Google Sheets أو Zapier Tables — تخزين البيانات.
-* AI by Zapier أو نموذج AI مناسب — فهم الطلب.
-* Gmail أو Slack — الإشعارات.
-* Filters / Paths — المنطق والتوجيه.
-* Formatter — تحويل البيانات عند الحاجة.
-
-لا نستخدم في هذا المشروع:
-
-* Python.
-* Backend.
-* Flask / FastAPI.
-* Frameworks.
-* قاعدة بيانات مخصصة.
-* تطوير API برمجي.
-
-لكن قد نتعامل مفاهيميًا مع:
-
-* JSON.
-* APIs.
-* Data Mapping.
-* Structured Data.
-
----
-
-# 6. الصورة الهندسية للمشروع
+في الوضع الحالي:
 
 ```text
-                 ┌──────────────────┐
-                 │   Client Request │
-                 └────────┬─────────┘
-                          ↓
-                       Trigger
-                          ↓
-                 ┌──────────────────┐
-                 │       AI         │
-                 │ Understand/Extract│
-                 └────────┬─────────┘
-                          ↓
-                 Structured Output
-                          ↓
-                 ┌──────────────────┐
-                 │    Validation    │
-                 └────────┬─────────┘
-                          ↓
-                    ┌─────┴─────┐
-                    ↓           ↓
-              Needs Review    Valid
-                    ↓           ↓
-                 Human       Routing
-                                ↓
-                           Record
-                                ↓
-                         Notification
+Client
+   ↓
+Request
+   ↓
+Employee reads it
+   ↓
+Understands the request
+   ↓
+Extracts information
+   ↓
+Checks missing information
+   ↓
+Decides what to do
+   ↓
+Records the request
+   ↓
+Routes it to the right person
 ```
+
+ومع زيادة عدد الطلبات تظهر **Pain Points** مثل:
+
+* العمل اليدوي المتكرر.
+* اختلاف طريقة معالجة الطلبات.
+* نسيان بعض المعلومات.
+* صعوبة التعامل مع الرسائل غير المنظمة.
+* تأخر توجيه الطلبات.
+* الاعتماد على افتراضات عند نقص المعلومات.
+* عدم وجود طريقة موحدة لتحديد الحالات التي تحتاج إلى إنسان.
 
 ---
 
-# 7. Mental Model المستخدم
+# 3. المشكلة التي سنحلها
 
-المشروع يتبع Mental Model الخاص بالوحدة الأولى:
+المشكلة ليست:
+
+> "نريد استخدام AI."
+
+بل:
+
+> **كيف يمكننا تحويل طلب العميل غير المنظم إلى طلب مفهوم ومنظم، والتحقق من أنه يحتوي على المعلومات الكافية، ثم توجيهه إلى المسار المناسب دون اتخاذ قرارات غير آمنة؟**
+
+وهنا يبدأ التفكير الهندسي.
+
+---
+
+# 4. Desired Outcome
+
+نريد الوصول إلى عملية يستطيع فيها النظام:
+
+```text
+Receive Request
+      ↓
+Understand Request
+      ↓
+Extract Information
+      ↓
+Structure Data
+      ↓
+Validate Data
+      ↓
+Detect Missing / Ambiguous Information
+      ↓
+Decide Next Step
+      ↓
+Route Request
+      ↓
+Record Result
+      ↓
+Notify / Escalate
+```
+
+الهدف ليس إزالة الإنسان بالكامل.
+
+الهدف هو:
+
+> **Automate what is safe to automate, and involve humans where judgment is required.**
+
+---
+
+# 5. المشروع والـ7 Layers
+
+هذا المشروع يطبق **7-Layer Mental Model** للوحدة.
+
+---
+
+## Layer 01 — Understand the Work
+
+نبدأ بفهم العمل قبل التفكير في الأداة.
 
 ```text
 Work
  ↓
 Problem
  ↓
+Pain Point
+ ↓
 Current State
  ↓
 Desired Outcome
  ↓
 Success Criteria
+```
+
+في المشروع سنحدد:
+
+* ما هو **Work**؟
+* ما هي المشكلة؟
+* أين توجد **Pain Points**؟
+* كيف تتم العملية حاليًا؟
+* ما النتيجة المطلوبة؟
+* كيف سنعرف أن الحل نجح؟
+
+### Core Question
+
+> **What work are we improving, and what does success look like?**
+
+---
+
+# Layer 02 — Decompose the Work
+
+بعد فهم العمل، نقسمه إلى أجزاء يمكن تحليلها وأتمتتها.
+
+```text
+Process
+ ↓
+Workflow
  ↓
 Task
  ↓
 Subtask
  ↓
-Dependency
- ↓
 Sequence
  ↓
-Process
- ↓
-Workflow
- ↓
-Trigger
- ↓
-Input / Data
- ↓
-AI / Rule / Human
- ↓
-Structured Output
- ↓
-Validation
+Dependency
 ```
 
-الفكرة الأساسية:
+سنحدد:
 
-> **لا نبدأ بالأداة. نبدأ بالعمل والمشكلة.**
-
-لا نفتح Zapier أولًا.
-
-نفهم العملية أولًا، ثم نصمم النظام، ثم نستخدم الأداة لتنفيذه.
-
----
-
-# 8. ما الذي يفعله كل مكوّن؟
-
-## AI
-
-نستخدمه عندما نحتاج إلى فهم اللغة الطبيعية.
-
-مثل:
-
-* استخراج المعلومات.
-* تصنيف نوع الخدمة.
-* تلخيص الطلب.
-* اكتشاف الغموض.
-* اكتشاف المعلومات الناقصة.
-
-## Rule
-
-نستخدمه عندما يكون القرار محددًا ويمكن التعبير عنه بشرط واضح.
+* ما هو الـ **Process**؟
+* ما هو الـ **Workflow** الذي سنبنيه؟
+* ما هي الـ **Tasks**؟
+* ما هي الـ **Subtasks**؟
+* ما ترتيب الخطوات؟
+* ما الـ **Dependencies** بينها؟
 
 مثال:
 
 ```text
-إذا كانت معلومات مهمة ناقصة
-→ يحتاج الطلب إلى مراجعة
+Receive Request
+      ↓
+Understand Request
+      ↓
+Extract Information
+      ↓
+Validate Information
+      ↓
+Decide
+      ↓
+Route
 ```
 
-## Human
+### Core Question
 
-نستخدمه عندما:
-
-* المعلومات غامضة.
-* يوجد تعارض.
-* القرار يحتاج حكمًا بشريًا.
-* النظام غير متأكد.
-
-إذن:
-
-```text
-AI      → يفهم
-Rule    → يتحقق ويطبق الشرط
-Human   → يحكم في الحالات التي تحتاج مسؤولية أو تفسيرًا
-```
+> **How can we break this work into clear, manageable steps?**
 
 ---
 
-# 9. المبدأ الأساسي
+# Layer 03 — Understand the Input & Data
 
-لا نبني:
+هنا ننتقل من العمل إلى البيانات التي يحتاجها النظام.
 
 ```text
-AI
+Trigger
  ↓
-Action
-```
-
-بل:
-
-```text
-AI
+Input
+ ↓
+Unstructured Data
+ ↓
+Structured Data
+ ↓
+Missing Information
  ↓
 Validation
- ↓
-Decision
- ↓
-Action
 ```
 
-لأن:
+سنحدد:
 
-> **مخرجات الذكاء الاصطناعي ليست موثوقة تلقائيًا لمجرد أنها خرجت من نموذج AI.**
+### Trigger
 
----
+ما الحدث الذي يبدأ الـWorkflow؟
 
-# 10. Success Criteria
+مثل:
 
-سنعتبر النظام ناجحًا إذا حقق:
+* New Form Submission
+* New Email
+* New Request
 
-### SC1 — Extraction
+### Input
 
-يستخرج المعلومات الموجودة فعلًا.
+ما البيانات التي تدخل إلى النظام؟
 
-### SC2 — No Fabrication
+### Unstructured Data
 
-لا يخترع المعلومات.
+مثل:
 
-إذا لم يذكر العميل الميزانية:
+> "نريد موقعًا للشركة ونحتاجه الشهر القادم."
+
+### Structured Data
+
+نريد تحويلها إلى شيء مثل:
+
+```json
+{
+  "service_type": "website",
+  "timeline": "next_month",
+  "budget": null
+}
+```
+
+### Missing Information
+
+مثلاً:
 
 ```text
 budget = null
 ```
 
+لا يعني أن النظام يجب أن يخمن الميزانية.
+
+بل يجب أن يعرف أن:
+
+> **Information is missing.**
+
+### Validation
+
+نتحقق:
+
+* هل البيانات موجودة؟
+* هل هي صحيحة؟
+* هل هي كافية؟
+* هل يمكن الانتقال إلى الخطوة التالية؟
+
+### Core Question
+
+> **What data enters the system, and is it sufficient for the next step?**
+
+---
+
+# Layer 04 — Design the Decision
+
+هنا نقرر:
+
+> أين نستخدم AI؟ وأين نستخدم Rule؟
+
+المبدأ:
+
+```text
+AI
+ ↓
+Understand / Extract / Classify
+ ↓
+Structured Output
+ ↓
+Rule
+ ↓
+Decision
+```
+
+### AI
+
+نستخدم AI للمهام التي تحتاج فهم اللغة الطبيعية، مثل:
+
+* Classification
+* Information Extraction
+* Summarization
+* Detecting ambiguity
+* Understanding the request
+
+### Rule
+
+نستخدم **Deterministic Logic** عندما يكون الشرط واضحًا.
+
+مثال:
+
+```text
+IF required_information is missing
+→ Needs Review
+```
+
+### AI Task
+
+لن نجعل AI مسؤولًا عن النظام كله.
+
+بل نعطيه **Bounded Task** واضحًا:
+
+> "Analyze the client request and return the required fields according to the defined schema."
+
+### Structured Output
+
+يجب أن يكون ناتج AI منظمًا وقابلًا للاستخدام من الـWorkflow.
+
+مثلاً:
+
+```json
+{
+  "request_type": "website",
+  "service_needed": "website development",
+  "timeline": "next month",
+  "budget": null,
+  "missing_information": [
+    "budget"
+  ],
+  "requires_human": true
+}
+```
+
+### Core Question
+
+> **What should AI understand, and what should deterministic logic decide?**
+
+---
+
+# Layer 05 — Handle Exceptions Safely
+
+ليس كل Request يمكن أن يسير في المسار الطبيعي.
+
+قد يكون:
+
+* Missing Information
+* Ambiguous Information
+* Conflicting Information
+* Low Confidence
+* Sensitive Request
+* Case requiring human judgment
+
+لذلك نضيف:
+
+```text
+Exception
+   ↓
+Human-in-the-Loop
+   ↓
+Safe Automation
+```
+
+مثلاً:
+
+```text
+Valid Request
+     ↓
+Continue Automation
+```
+
+بينما:
+
+```text
+Missing / Ambiguous / Unclear
+     ↓
+Human Review
+```
+
+المبدأ:
+
+> **The system should know when not to act alone.**
+
+### Core Question
+
+> **When should automation stop and a human take over?**
+
+---
+
+# Layer 06 — Design the Automation
+
+بعد فهم العمل والبيانات والقرارات والاستثناءات، نصمم الـAutomation.
+
+التصميم قد يكون:
+
+```text
+Trigger
+   ↓
+Receive Input
+   ↓
+AI Analysis
+   ↓
+Structured Output
+   ↓
+Validation
+   ↓
+Decision
+   ↓
+ ┌───────────────┐
+ │               │
+Valid          Exception
+ │               │
+ ↓               ↓
+Route        Human Review
+ │
+ ↓
+Record
+ │
+ ↓
+Notify
+```
+
+هنا لا نستخدم Zapier بعد.
+
+نحن نحدد:
+
+> **What should happen?**
+
+### Core Question
+
+> **What should the automation do from Trigger to Outcome?**
+
+---
+
+# Layer 07 — Implement the Design
+
+الآن فقط ننتقل إلى الأداة.
+
+سنستخدم:
+
+## Zapier
+
+لتحويل التصميم السابق إلى Workflow فعلي.
+
+قد نستخدم:
+
+* Google Forms
+* Gmail
+* Google Sheets أو Zapier Tables
+* AI by Zapier أو AI Model
+* Filters
+* Paths
+* Formatter
+* Gmail / Slack للإشعارات
+
+هنا السؤال يتغير من:
+
+> What should happen?
+
+إلى:
+
+> **How do we build what we designed?**
+
+المبدأ الأساسي:
+
+> **Tools implement the design. Tools do not replace the design.**
+
+---
+
+# 6. النظام النهائي
+
+النظام الذي سنبنيه يمثل:
+
+```text
+                 Client Request
+                       │
+                       ▼
+                    Trigger
+                       │
+                       ▼
+                 Input / Data
+                       │
+                       ▼
+                AI Understanding
+                       │
+                       ▼
+                Structured Output
+                       │
+                       ▼
+                   Validation
+                       │
+                ┌──────┴──────┐
+                │             │
+             Valid        Exception
+                │             │
+                ▼             ▼
+             Routing      Human Review
+                │
+                ▼
+              Record
+                │
+                ▼
+           Notification
+```
+
+وهذا يمثل تطبيقًا عمليًا للـMental Model كاملًا.
+
+---
+
+# 7. AI vs Rule vs Human
+
+لن نضع AI في كل خطوة.
+
+سنستخدم أبسط آلية موثوقة لكل مهمة.
+
+| الحاجة                        | الآلية |
+| ----------------------------- | ------ |
+| فهم رسالة العميل              | AI     |
+| استخراج المعلومات             | AI     |
+| تصنيف نوع الطلب               | AI     |
+| التحقق من وجود حقل            | Rule   |
+| التحقق من شرط واضح            | Rule   |
+| تحديد مسار بناءً على شرط ثابت | Rule   |
+| حالة غامضة                    | Human  |
+| قرار يحتاج حكمًا بشريًا       | Human  |
+
+المبدأ:
+
+> **Use the simplest reliable mechanism that solves the task.**
+
+---
+
+# 8. Data Flow
+
+أحد أهم أهداف المشروع هو رؤية رحلة البيانات:
+
+```text
+Unstructured Input
+        ↓
+AI Processing
+        ↓
+Structured Data
+        ↓
+Validation
+        ↓
+Decision
+        ↓
+Action
+```
+
+مثال:
+
+### Input
+
+> "نريد موقعًا لشركتنا الجديدة، ونحتاجه الشهر القادم، لكننا لم نحدد الميزانية بعد."
+
+### Structured Output
+
+```json
+{
+  "service_type": "website",
+  "timeline": "next month",
+  "budget": null,
+  "missing_information": [
+    "budget"
+  ],
+  "requires_human": true
+}
+```
+
+لاحظ:
+
+**لا يوجد تخمين.**
+
+إذا لم يقدم العميل معلومة:
+
+```text
+Unknown → null
+```
+
 وليس:
 
 ```text
-budget = $1000
+Unknown → invented value
 ```
 
 المبدأ:
 
 > **Unknown is better than invented.**
 
-### SC3 — Ambiguity Detection
-
-يكتشف المعلومات غير الدقيقة.
-
-مثال:
-
-> "الأسبوع القادم."
-
-هذه ليست بالضرورة معلومة مفقودة، لكنها ليست موعدًا دقيقًا.
-
-### SC4 — Structured Output
-
-يعيد AI البيانات وفق Schema محدد.
-
-### SC5 — Validation
-
-لا تنتقل الحالات غير الصالحة مباشرة إلى إجراء مهم.
-
-### SC6 — Human Escalation
-
-الحالات الغامضة أو الناقصة تنتقل إلى إنسان.
-
 ---
 
-# 11. الناتج النهائي المتوقع
+# 9. Validation
 
-عند اكتمال المشروع، يستطيع النظام تنفيذ:
+لن نثق بمخرجات AI لمجرد أنها تبدو صحيحة.
+
+سنضع **Validation** قبل تنفيذ الإجراءات المهمة.
+
+مثلاً:
 
 ```text
-Client
-  ↓
-Submit Request
-  ↓
-Zapier Trigger
-  ↓
-AI Analysis
-  ↓
-Structured Data
-  ↓
-Validation
-  ↓
- ┌─────────────────┐
- │                 │
- ↓                 ↓
-Needs Review      Valid
- │                 │
- ↓                 ↓
-Human             Routing
-Review               │
-                     ↓
-                  Record
-                     │
-                     ↓
-                Notification
+AI Output
+   ↓
+Are required fields present?
+   ↓
+Is the data valid?
+   ↓
+Is there ambiguity?
+   ↓
+Is human review required?
+```
+
+إذا كانت الإجابة غير مناسبة:
+
+```text
+→ Exception
+→ Human Review
+```
+
+أما إذا كانت البيانات سليمة:
+
+```text
+→ Continue Workflow
 ```
 
 ---
 
-# 12. كيف نتعامل مع المشروع؟
+# 10. Safe Automation
 
-لا نعتبر المشروع مكتملًا لمجرد أن الـZap اشتغل.
+المشروع لا يهدف إلى:
 
-دورة البناء هي:
+> Automate Everything
+
+بل إلى:
+
+> **Automate Safely.**
+
+لذلك:
+
+```text
+Safe + Clear + Deterministic
+        ↓
+Automation
+```
+
+بينما:
+
+```text
+Missing
+Ambiguous
+Sensitive
+Low Confidence
+Requires Judgment
+        ↓
+Human-in-the-Loop
+```
+
+وهذه نقطة أساسية في تصميم **AI Automation Solutions**.
+
+---
+
+# 11. Success Criteria
+
+يعتبر النظام ناجحًا عندما:
+
+### SC1 — Correct Extraction
+
+يستخرج المعلومات الموجودة فعلًا في طلب العميل.
+
+### SC2 — No Fabrication
+
+لا يخترع معلومات غير موجودة.
+
+### SC3 — Structured Output
+
+يخرج AI البيانات وفق Schema محدد.
+
+### SC4 — Missing Information Detection
+
+يكتشف المعلومات المطلوبة التي لم يقدمها العميل.
+
+### SC5 — Validation
+
+لا يسمح للبيانات غير الصالحة بالانتقال مباشرة إلى إجراء مهم.
+
+### SC6 — Correct Routing
+
+يتم توجيه الطلب إلى المسار المناسب.
+
+### SC7 — Human Escalation
+
+الحالات التي تحتاج حكمًا بشريًا تصل إلى الإنسان.
+
+### SC8 — Explainable Workflow
+
+يمكننا فهم:
+
+> لماذا ذهب هذا الطلب إلى هذا المسار؟
+
+### SC9 — Testable System
+
+يمكن اختبار النظام باستخدام حالات مختلفة وليس حالة واحدة فقط.
+
+---
+
+# 12. Testing Mindset
+
+المشروع لا ينتهي عندما يظهر:
+
+> **Zap is successful**
+
+الـAutomation قد يعمل تقنيًا لكنه يكون خاطئًا منطقيًا.
+
+لذلك سنستخدم:
 
 ```text
 Build
@@ -432,85 +768,262 @@ Fix
 Retest
 ```
 
-نريد نظامًا **يمكن تفسيره واختباره وتصحيحه**، وليس مجرد Automation يعمل في حالة واحدة.
+وسنختبر حالات مثل:
+
+### Case 01 — Complete Request
+
+كل المعلومات موجودة.
+
+### Case 02 — Missing Information
+
+معلومة أساسية غير موجودة.
+
+### Case 03 — Ambiguous Information
+
+المعلومة موجودة لكنها غير واضحة.
+
+### Case 04 — Unexpected Request
+
+الطلب لا ينتمي للمسارات المتوقعة.
+
+### Case 05 — AI Incorrect Output
+
+مخرجات AI لا تطابق الـSchema أو تحتوي على بيانات غير مناسبة.
+
+الهدف ليس فقط اكتشاف أن النظام فشل.
+
+بل السؤال:
+
+> **Why did it fail?**
+
+ثم:
+
+> **Where should we fix it?**
 
 ---
 
 # 13. حدود المشروع
 
-حتى يبقى المشروع مناسبًا لـU1، لن نبني داخله:
+حتى يبقى المشروع مناسبًا لـU1، لن نبني:
 
 * CRM كامل.
-* Dashboard.
 * Customer Portal.
+* Dashboard.
 * AI Agent.
 * RAG.
 * Multi-Agent System.
 * Backend مخصص.
-* API Development.
-* نظام قواعد بيانات معقد.
+* Custom Database.
+* API Development متقدم.
+* نظام Lead Scoring معقد.
 
-الهدف هو:
+نحن نبني:
 
-> **بناء Vertical Slice واحد كامل وقابل للاختبار.**
+> **One complete, testable Vertical Slice.**
 
 ---
 
-# 14. ملفات المشروع
+# 14. الأدوات
 
-يحتوي المشروع على سبعة ملفات رئيسية:
+الأداة الأساسية:
+
+**Zapier**
+
+ويمكن أن نستخدم معها:
+
+* Google Forms
+* Gmail
+* Google Sheets أو Zapier Tables
+* AI by Zapier / AI Model
+* Filters
+* Paths
+* Formatter
+* Gmail / Slack
+
+أما:
+
+* JSON
+* APIs
+* Data Mapping
+* Structured Data
+
+فسنتعامل معها كمفاهيم مهمة لفهم كيفية انتقال البيانات داخل الأنظمة، وليس كموضوع برمجي مستقل.
+
+---
+
+# 15. ملفات المشروع
+
+سيتم تنظيم المشروع إلى ملفات، بحيث يكون لكل جزء من عملية البناء مكان واضح:
 
 ```text
-README.md
+AI-Client-Intake/
+│
+├── README.md
 │
 ├── 01-business-analysis.md
-├── 02-requirements.md
-├── 03-data-contract.md
-├── 04-workflow-design.md
-├── 05-ai-design.md
+├── 02-workflow-decomposition.md
+├── 03-data-design.md
+├── 04-decision-and-exception-design.md
+├── 05-automation-design.md
 ├── 06-zapier-implementation.md
 └── 07-testing-debugging.md
 ```
 
 ### 01 — Business Analysis
 
-يفهم المشكلة والعمل والوضع الحالي والنتيجة المطلوبة.
+تطبيق **Layer 01**:
 
-### 02 — Requirements
+```text
+Work
+Problem
+Pain Point
+Current State
+Desired Outcome
+Success Criteria
+```
 
-يحدد ما يجب أن يفعله النظام وشروط نجاحه.
+### 02 — Workflow Decomposition
 
-### 03 — Data Contract
+تطبيق **Layer 02**:
 
-يحدد البيانات وشكلها وقواعدها.
+```text
+Process
+Workflow
+Task
+Subtask
+Sequence
+Dependency
+```
 
-### 04 — Workflow Design
+### 03 — Data Design
 
-يحول العملية إلى Workflow هندسي قبل تنفيذها.
+تطبيق **Layer 03**:
 
-### 05 — AI Design
+```text
+Trigger
+Input
+Unstructured Data
+Structured Data
+Missing Information
+Validation
+```
 
-يحدد دور AI، والتعليمات، والـPrompt، والـStructured Output.
+### 04 — Decision & Exception Design
+
+تطبيق:
+
+```text
+Layer 04
+AI vs Rule
+Deterministic Logic
+AI Task
+Structured Output
+
++
+
+Layer 05
+Exception
+Human-in-the-Loop
+Safe Automation
+```
+
+### 05 — Automation Design
+
+تطبيق **Layer 06**:
+
+> تصميم الـAutomation قبل فتح الأداة.
+
+يحدد:
+
+```text
+Trigger
+→ Input
+→ Processing
+→ Decision
+→ Validation
+→ Action
+→ Exception Handling
+→ Outcome
+```
 
 ### 06 — Zapier Implementation
 
-يحوّل التصميم إلى نظام فعلي داخل Zapier.
+تطبيق **Layer 07**:
+
+> تحويل التصميم إلى Workflow فعلي باستخدام Zapier.
 
 ### 07 — Testing & Debugging
 
-يختبر النظام، ويوثق الأخطاء، ويحلل أسبابها، ويعيد الاختبار.
+تطبيق دورة:
+
+```text
+Build
+→ Test
+→ Break
+→ Diagnose
+→ Fix
+→ Retest
+```
 
 ---
 
-# 15. النتيجة التعليمية النهائية
+# 16. العلاقة بين ملفات المشروع والـ7 Layers
 
-بعد انتهاء المشروع، يجب ألا تكون النتيجة:
+```text
+01 Business Analysis
+        ↓
+Layer 01
+Understand the Work
+        ↓
+02 Workflow Decomposition
+        ↓
+Layer 02
+Decompose the Work
+        ↓
+03 Data Design
+        ↓
+Layer 03
+Understand Input & Data
+        ↓
+04 Decision & Exception Design
+        ↓
+Layer 04 + Layer 05
+Design the Decision
+Handle Exceptions Safely
+        ↓
+05 Automation Design
+        ↓
+Layer 06
+Design the Automation
+        ↓
+06 Zapier Implementation
+        ↓
+Layer 07
+Implement the Design
+        ↓
+07 Testing & Debugging
+        ↓
+Test → Diagnose → Refine
+```
 
-> "تعلمت Zapier."
+وهكذا يصبح المشروع **ترجمة عملية مباشرة للوحدة**، وليس مشروعًا منفصلًا عنها.
+
+---
+
+# 17. النتيجة التعليمية
+
+بعد إنهاء المشروع، لا نريد أن تكون إجابة المتدرب:
+
+> "تعلمت كيف أعمل Zap في Zapier."
 
 بل:
 
-> **"أستطيع تحليل عملية عمل، وتصميم Workflow، وتحديد أين أستخدم AI وRule وHuman، وتحويل البيانات غير المنظمة إلى Structured Data، والتحقق منها، ثم بناء النظام واختباره وتصحيح أخطائه."**
+> **"أستطيع أن أفهم عملية عمل، أحدد المشكلة والنتيجة المطلوبة، أفكك الـProcess إلى Workflow وTasks، أفهم الـInput والبيانات، أحدد أين أستخدم AI وأين أستخدم Rule وأين يحتاج النظام إلى Human، أصمم Structured Output وValidation، أصمم Automation، ثم أنفذها وأختبرها وأشخص أخطاءها وأحسنها."**
 
-وهذه هي المهارة التي نريد بناءها في U1.
+وهذا هو جوهر:
 
+# U1 — Process & Data Thinking
+
+> **Think First. Build Later.**
+
+> **Understand the Work. Understand the Data. Design the Decision. Handle Exceptions. Design the Automation. Then Build It.**
