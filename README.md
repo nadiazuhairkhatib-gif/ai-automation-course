@@ -1,4 +1,3 @@
-# Nadia AI Automation
 ### From AI User to AI Automation Solution Engineer
 
 **Think. Design. Build. Test. Improve.**
