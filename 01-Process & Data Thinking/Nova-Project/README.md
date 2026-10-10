@@ -1,4 +1,4 @@
-# 🚀 Independent Project
+
 
 ## Build Your Own AI Automation Solution
 
