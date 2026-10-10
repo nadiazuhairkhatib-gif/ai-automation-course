@@ -1,68 +1,56 @@
-# NOVA — U1 Assignment
-## Understand the Work
+# 🚀 Independent Project
+
+## Build Your Own AI Automation Solution
+
+بعد أن قمنا ببناء **AI Client Intake & Request Routing System** معًا، الآن حان دورك لتطبيق نفس طريقة التفكير على **مشكلة من اختيارك**.
+
+في هذا المشروع، لن تتبع خطوات جديدة.
+
+**ستعيد استخدام نفس Engineering Approach الذي طبقناه في المشروع الحقيقي.**
+
+> **Choose a Problem → Design the Solution → Build → Test**
 
 ---
 
-## Business Context
+# 01 — Choose Your Problem
 
-أنت تعمل على تطوير **NOVA** لشركة خدمات.
+اختر **مشكلة أو عملية حقيقية صغيرة** يمكن تحسينها باستخدام Automation.
 
-تستقبل الشركة **Business Requests** من العملاء من خلال **نموذج موجود على موقع الشركة**.
+يمكن أن تكون من أي مجال، مثل:
 
-بعد إرسال العميل للنموذج، يصل الطلب إلى الشركة ليتم التعامل معه.
+* Education
+* HR
+* Customer Support
+* Marketing
+* Sales
+* Administration
+* Freelancing
+* Small Business
+* Personal Productivity
 
-الطلبات التي تصل ليست موحدة. كل عميل يكتب طلبه بطريقته الخاصة.
+### أمثلة فقط للإلهام
 
-أمثلة:
+* Job Application Intake
+* Customer Support Requests
+* Event Registration
+* IT Support Requests
+* Content Requests
+* Employee Requests
+* Meeting Follow-up
+* Order Requests
 
-> "مرحبًا، نحتاج موقعًا إلكترونيًا لشركتنا. نريد معرفة السعر."
+**لا تختَر فكرة لأنها تبدو "مبهرة".**
 
-> "نحتاج تطبيق موبايل والميزانية تقريبًا 5000 دولار، ونريد البدء الشهر القادم."
-
-> "نريد خدمة تسويق لشركتنا ونحتاجها بأسرع وقت ممكن."
-
-> "مرحبًا، أريد معرفة إذا كنتم تقدمون خدمة تصميم هوية بصرية."
-
----
-
-## المشكلة
-
-حاليًا، يتعامل موظف الشركة مع كل طلب يدويًا.
-
-يقرأ الطلب، يحاول فهم ما يريده العميل، يبحث عن المعلومات المهمة، ويتعامل مع الطلب بناءً على ما وجده فيه.
-
-بعض الطلبات تكون واضحة.
-
-بعضها ينقصه معلومات مهمة.
-
-وبعضها قد يكون غامضًا أو يحتاج إلى توضيح.
-
-مع زيادة عدد الطلبات، يصبح التعامل اليدوي معها أكثر صعوبة، وقد يؤدي إلى التأخير أو الأخطاء أو التعامل غير المتسق مع الطلبات.
-
-الشركة تريد تحسين طريقة التعامل مع هذه الطلبات باستخدام **AI Automation**.
+اختر مشكلة تستطيع فهمها وبناؤها ضمن نطاق المشروع.
 
 ---
 
-# Your Mission
+# 02 — Build Your Project
 
-صمّم وابنِ **U1 Version of NOVA**.
-
-يجب أن تحوّل طريقة التعامل الحالية مع **Business Requests** إلى حل أكثر تنظيمًا وأتمتة.
-
-ابدأ بفهم المشكلة وطريقة العمل الحالية، ثم صمّم الحل، وبعد ذلك قم بتنفيذه.
-
-لا تبدأ من الأداة.
-
-ابدأ من المشكلة.
-
----
-
-# Project Requirements
-
-يجب أن يحتوي مشروعك على:
+بعد اختيار الفكرة، أنشئ Repository خاصًا بمشروعك، واستخدم نفس بنية المشروع الحقيقي:
 
 ```text
-NOVA/
+Your-Project/
 ├── README.md
 ├── 01-business-analysis.md
 ├── 02-workflow-decomposition.md
@@ -72,108 +60,145 @@ NOVA/
 └── 06-implementation.md
 ```
 
-### 01-business-analysis.md
+لا تحتاج إلى كتابة شرح نظري للمفاهيم.
 
-حلّل العمل والمشكلة التي تحاول NOVA تحسينها.
-
-### 02-workflow-decomposition.md
-
-فكك طريقة العمل الحالية إلى أجزاء واضحة.
-
-### 03-data-design.md
-
-صمّم البيانات التي يحتاجها الحل.
-
-### 04-decision-and-exception-design.md
-
-صمّم طريقة اتخاذ القرارات والتعامل مع الحالات غير الطبيعية.
-
-### 05-automation-design.md
-
-صمّم الـAutomation قبل تنفيذها.
-
-### 06-implementation.md
-
-نفّذ التصميم باستخدام **Zapier** ووثّق التنفيذ والاختبارات والنتائج.
+**استخدم كل ملف لتوثيق قراراتك في مشروعك.**
 
 ---
 
-# Tool Constraint
+# 03 — What to Put in Each File?
 
-يجب تنفيذ الـAutomation باستخدام:
+## `01-business-analysis.md`
 
-**Zapier**
+وثّق:
 
-يمكنك استخدام الأدوات المساعدة التي تحتاجها لتنفيذ تصميمك.
-
-لا تستخدم **Make** أو **n8n** أو Automation Platform أخرى.
-
-اختيار الأدوات الأخرى داخل الحل يعود إلى تصميمك.
-
----
-
-# Testing
-
-اختبر الحل باستخدام حالات مختلفة من **Business Requests**.
-
-يجب أن تتضمن اختباراتك حالات مثل:
-
-- طلب واضح ومكتمل.
-- طلب يحتوي على معلومات ناقصة.
-- طلب غير واضح أو غامض.
-
-وثّق داخل `06-implementation.md`:
-
-```text
-Test:
-Input:
-Expected:
-Actual:
-Result:
-```
-
-وأرفق **Screenshots / Evidence** التي تثبت نتائج الاختبارات.
+* ما المشكلة؟
+* كيف تتم العملية حاليًا؟
+* ما النتيجة التي تريد الوصول إليها؟
+* ما الـSuccess Criteria؟
 
 ---
 
-# Final Submission
+## `02-workflow-decomposition.md`
 
-يجب أن يحتوي الـRepository على الملفات الستة المطلوبة.
+وثّق:
 
-كما يجب أن يحتوي المشروع على:
+* الـProcess
+* الـWorkflow
+* الـTasks / Subtasks
+* الـSequence
+* الـDependencies
 
-- Working Automation
-- Implementation Documentation
-- Testing Results
-- Evidence
-
----
-
-# Definition of Done
-
-يعتبر المشروع مكتملًا عندما تستطيع أن تثبت أنك:
-
-- فهمت المشكلة الحقيقية.
-- حللت طريقة العمل الحالية.
-- حددت ما يجب تحسينه.
-- صممت الحل قبل بنائه.
-- اتخذت قرارات واضحة بشأن البيانات والمنطق والاستثناءات.
-- نفذت الحل باستخدام Zapier.
-- اختبرت الحل باستخدام حالات مختلفة.
-- وثقت النتائج.
-- تستطيع شرح **لماذا صممت الحل بهذه الطريقة**.
+وأظهر الـHappy Path والـException Path إذا كانا موجودين.
 
 ---
 
-## NOVA — U1
+## `03-data-design.md`
 
-لا تحاول بناء NOVA كاملة.
+وثّق:
 
-هذه المهمة هي **النسخة الأولى من النظام**.
+* الـTrigger
+* الـInputs
+* الـUnstructured Data
+* الـStructured Data
+* الـData Schema
+* الـMissing Information
+* الـValidation
 
-المطلوب ليس استخدام أكبر عدد من الأدوات، وإنما إظهار قدرتك على الانتقال من:
+---
 
-**Business Problem → Engineering Solution**
+## `04-decision-and-exception-design.md`
 
-**Think First. Build Later.**
+وثّق:
 
+* أين تستخدم AI؟
+* أين تستخدم Rule؟
+* أين تحتاج Human؟
+* ما الـExceptions؟
+* ماذا يحدث عندما تظهر Exception؟
+
+---
+
+## `05-automation-design.md`
+
+صمّم الـAutomation قبل بنائها.
+
+أظهر الـWorkflow النهائي من البداية إلى النهاية.
+
+> **Do not start with the tool. Start with the design.**
+
+---
+
+## `06-implementation.md`
+
+نفّذ التصميم باستخدام **Zapier**.
+
+**Zapier is required for this project.**
+
+يمكنك استخدام أدوات مساعدة مناسبة مع Zapier، مثل:
+
+* Google Forms
+* Google Sheets
+* Gmail
+* AI by Zapier
+
+لكن يجب أن يكون **Zapier هو محرك الـAutomation الأساسي**.
+
+> **Do not switch to another Automation platform.**
+
+لا تستخدم Make أو n8n أو منصة Automation أخرى لهذا المشروع.
+
+وثّق ما بنيته فعليًا، وليس ما كنت تخطط لبنائه.
+
+---
+
+# 04 — Your Final Submission
+
+عند الانتهاء، يجب أن يحتوي Repository على:
+
+### Documentation
+
+الملفات الستة المطلوبة.
+
+### Working Automation
+
+**Zapier Automation تعمل فعليًا** أو Prototype قابل للتجربة.
+
+### README
+
+صفحة رئيسية قصيرة توضّح:
+
+* Problem
+* Solution
+* How it works
+* Tools Used
+* How to Test
+
+---
+
+# ✅ Before You Submit
+
+تأكد من أنك تستطيع الإجابة:
+
+* هل اخترت مشكلة حقيقية؟
+* هل صممت الحل قبل بناء الـAutomation؟
+* هل كل خطوة في الـWorkflow لها سبب واضح؟
+* هل حددت بوضوح دور AI وRule وHuman؟
+* هل تعاملت مع Exceptions؟
+* هل بنيت الـAutomation باستخدام Zapier؟
+* هل الـAutomation تعمل؟
+* هل تستطيع شرح قراراتك؟
+
+---
+
+# ⭐ The Goal
+
+لا نحاول بناء أكبر Automation.
+
+نريد بناء حل صغير، واضح، منطقي، قابل للتجربة.
+
+> **Think First. Build Later.**
+
+Your job is not to show how many tools you know.
+
+**Your job is to show how well you can solve a problem using Zapier.**
